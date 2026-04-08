@@ -17,7 +17,7 @@ inputs:
   theos-sdks:
     description: "Where to clone the iOS SDKs from (GitHub repository URL)"
     required: false
-    default: "https://github.com/theos/sdks"
+   default: "https://github.com/KabirSagar/sdks"
   theos-sdks-branch:
     description: "Which branch to clone from SDK repo"
     required: false
