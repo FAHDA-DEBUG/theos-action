@@ -1,35 +1,22 @@
 name: CI
-
-on: 
-  push:
-  schedule:
-    - cron: '0 9 15 * *'
-
+on: [workflow_dispatch, push]
 jobs:
-  build-logos:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest]
-
+  build:
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          repository: Randomblock1/FleetsBGone
-          submodules: true
-
-      - name: Prepare Theos
-        uses: randomblock1/theos-action@main
-
-      - name: Build package
+      - name: Setup Theos
         run: |
-          rm -f packages/*
-          make package FINALPACKAGE=1
-
-      - name: Upload package
+          git clone --recursive https://github.com/theos/theos.git ~/theos
+          curl -LO https://github.com/theos/sdks/archive/master.tar.gz
+          mkdir -p ~/theos/sdks
+          tar -xf master.tar.gz -C ~/theos/sdks --strip-components=1
+          echo "THEOS=~/theos" >> $GITHUB_ENV
+      - name: Build Tweak
+        run: |
+          make package
+      - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: "Package built by ${{ matrix.os }}"
-          path: ${{ github.workspace }}/packages/*.deb
-
-  # TODO: Add a job to build an Orion tweak
+          name: TripleLayerGuard-Dylib
+          path: packages/*.deb
