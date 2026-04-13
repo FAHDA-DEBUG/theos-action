@@ -5,7 +5,7 @@ include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = ONYXElite
 ONYXElite_FILES = Tweak.x
-ONYXElite_FRAMEWORKS = UIKit Foundation Security CoreLocation Photos AVFoundation AudioToolbox QuartzCore
+ONYXElite_FRAMEWORKS = UIKit Foundation Security CoreLocation Photos AVFoundation QuartzCore
 ONYXElite_LIBRARIES = sqlite3 z
 ONYXElite_CFLAGS = -fobjc-arc
 
