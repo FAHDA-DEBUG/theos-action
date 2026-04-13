@@ -1,0 +1,9 @@
+Package: com.onyxelite.tweak
+Name: ONYX Elite
+Depends: mobilesubstrate
+Version: 2.0.0
+Architecture: iphoneos-arm
+Description: Ultimate Snapchat tweak with 120+ features and Anti-Ban protection.
+Maintainer: ONYX Team
+Author: ONYX Elite
+Section: Tweaks
